@@ -1,0 +1,558 @@
+Kani Rust Verifier 0.68.0 (cargo plugin)
+CBMC 6.11.0
+   Compiling even-or-odd v0.1.0 (/workspace/scratch/afbb2d473b35/even-or-odd-verification)
+warning: use of an unstable feature
+ --> <crate attribute>:1:12
+  |
+1 | #![feature(register_tool)]
+  |            ^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `--force-warn unstable-features`
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.26s
+Checking harness verification::verify_is_even_u32...
+CBMC 6.11.0 (cbmc-6.11.0)
+CBMC version 6.11.0 (cbmc-6.11.0) 64-bit x86_64 linux
+Reading GOTO program from file /workspace/scratch/afbb2d473b35/even-or-odd-verification/target/kani/x86_64-unknown-linux-gnu/debug/build/even-or-odd/6234315c6cd9b411/out/even_or_odd-6234315c6cd9b411__RNvNtCs4ZcSjGnad4r_11even_or_odd12verification18verify_is_even_u32.out
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Running with 16 object bits, 48 offset bits (user-specified)
+Starting Bounded Model Checking
+file library/kani_core/src/lib.rs line 710 column 45 function kani::internal::enter_contract_clause: call to '_RNvMs9_NtCs8xvirJzNMvV_4core3numj14saturating_add': not enough arguments, inserting non-deterministic value
+file library/kani_core/src/lib.rs line 723 column 45 function kani::internal::exit_contract_clause: call to '_RNvMs9_NtCs8xvirJzNMvV_4core3numj14saturating_sub': not enough arguments, inserting non-deterministic value
+Runtime Symex: 0.112372s
+size of program expression: 1401 steps
+slicing removed 815 assignments
+Generated 106 VCC(s), 4 remaining after simplification
+Runtime Postprocess Equation: 0.00201931s
+Passing problem to propositional reduction
+converting SSA
+Runtime Convert SSA: 0.0135475s
+Running propositional reduction
+Post-processing
+Runtime Post-process: 8.442e-06s
+Solving with CaDiCaL 3.0.0
+3974 variables, 5138 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 0.000467751s
+Runtime decision procedure: 0.0141758s
+Running propositional reduction
+Solving with CaDiCaL 3.0.0
+3975 variables, 5139 clauses
+SAT checker: instance is SATISFIABLE
+Runtime Solver: 8.0213e-05s
+Runtime decision procedure: 0.000154293s
+Running propositional reduction
+Solving with CaDiCaL 3.0.0
+3976 variables, 5140 clauses
+SAT checker: instance is UNSATISFIABLE
+Runtime Solver: 0.000229571s
+Runtime decision procedure: 0.000301283s
+
+RESULTS:
+Check 1: __CPROVER_contracts_write_set_check_assignment.assertion.1
+	 - Status: SUCCESS
+	 - Description: "ptr NULL or writable up to size"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:805 in function __CPROVER_contracts_write_set_check_assignment
+
+Check 2: __CPROVER_contracts_write_set_check_assignment.assertion.2
+	 - Status: SUCCESS
+	 - Description: "CAR size is less than __CPROVER_max_malloc_size"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:822 in function __CPROVER_contracts_write_set_check_assignment
+
+Check 3: __CPROVER_contracts_write_set_check_assignment.assertion.3
+	 - Status: SUCCESS
+	 - Description: "no offset bits overflow on CAR upper bound computation"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:828 in function __CPROVER_contracts_write_set_check_assignment
+
+Check 4: __CPROVER_contracts_write_set_check_assignment.unwind.1
+	 - Status: SUCCESS
+	 - Description: "unwinding assertion loop 0"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:837 in function __CPROVER_contracts_write_set_check_assignment
+
+Check 5: __CPROVER_contracts_write_set_record_deallocated.unwind.1
+	 - Status: SUCCESS
+	 - Description: "unwinding assertion loop 0"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:740 in function __CPROVER_contracts_write_set_record_deallocated
+
+Check 6: even_or_odd::is_even::<u32>::{closure#2}::{closure#1}.single_top_level_call.1
+	 - Status: SUCCESS
+	 - Description: "Only a single top-level call to function _RNCNCINvCs4ZcSjGnad4r_11even_or_odd7is_evenmEs0_0s_0B6_ when checking contract _RNCNCINvCs4ZcSjGnad4r_11even_or_odd7is_evenmEs0_0s_0B6_"
+	 - Location: src/lib.rs:12:18 in function even_or_odd::is_even::<u32>::{closure#2}::{closure#1}
+
+Check 7: even_or_odd::is_even::<u32>::{closure#2}::{closure#1}.no_alloc_dealloc_in_requires.1
+	 - Status: SUCCESS
+	 - Description: "Check that requires do not allocate or deallocate memory"
+	 - Location: src/lib.rs:12:18 in function even_or_odd::is_even::<u32>::{closure#2}::{closure#1}
+
+Check 8: even_or_odd::is_even::<u32>::{closure#2}::{closure#1}.no_alloc_dealloc_in_ensures.1
+	 - Status: SUCCESS
+	 - Description: "Check that ensures do not allocate or deallocate memory"
+	 - Location: src/lib.rs:12:18 in function even_or_odd::is_even::<u32>::{closure#2}::{closure#1}
+
+Check 9: even_or_odd::is_even::<u32>::{closure#2}::{closure#1}.no_recursive_call.1
+	 - Status: SUCCESS
+	 - Description: "No recursive call to function _RNCNCINvCs4ZcSjGnad4r_11even_or_odd7is_evenmEs0_0s_0B6_ when checking contract _RNCNCINvCs4ZcSjGnad4r_11even_or_odd7is_evenmEs0_0s_0B6_"
+	 - Location: src/lib.rs:12:18 in function even_or_odd::is_even::<u32>::{closure#2}::{closure#1}
+
+Check 10: free.frees.1
+	 - Status: SUCCESS
+	 - Description: "Check that ptr is freeable"
+	 - Location: <builtin-library-free>:43 in function free
+
+Check 11: is_even::<u32>::{closure#2}.assertion.1
+	 - Status: SUCCESS
+	 - Description: "|result: &bool| *result == (number % T::from(2) == T::from(0))"
+	 - Location: src/lib.rs:12:18 in function is_even::<u32>::{closure#2}
+
+Check 12: is_even::<u32>::{closure#3}.unreachable.1
+	 - Status: SUCCESS
+	 - Description: "unreachable code"
+	 - Location: src/lib.rs:12:18 in function is_even::<u32>::{closure#3}
+
+Check 13: is_even::<u32>::{closure#0}.unreachable.1
+	 - Status: SUCCESS
+	 - Description: "unreachable code"
+	 - Location: src/lib.rs:12:18 in function is_even::<u32>::{closure#0}
+
+Check 14: is_even::<u32>::{closure#1}.unreachable.1
+	 - Status: SUCCESS
+	 - Description: "unreachable code"
+	 - Location: src/lib.rs:12:18 in function is_even::<u32>::{closure#1}
+
+Check 15: <u32 as std::ops::Rem>::rem.assertion.1
+	 - Status: SUCCESS
+	 - Description: "attempt to calculate the remainder with a divisor of zero"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/arith.rs:602:45 in function <u32 as std::ops::Rem>::rem
+
+Check 16: <u32 as std::ops::Rem>::rem.arithmetic_overflow.1
+	 - Status: SUCCESS
+	 - Description: "attempt to calculate the remainder with a divisor of zero"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/arith.rs:602:45 in function <u32 as std::ops::Rem>::rem
+
+Check 17: kani::internal::reset_contract_clause_depth.assigns.1
+	 - Status: SUCCESS
+	 - Description: "Check that *var_1 is assignable"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 18: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 19: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 20: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 21: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 22: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 23: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: src/lib.rs:12:48 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 24: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.7
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 25: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.8
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 26: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.9
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 27: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.10
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 28: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.11
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 29: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.12
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 30: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.13
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 31: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.14
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 32: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.15
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 33: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.16
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 34: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.17
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 35: is_even::<u32>::{closure#2}::{closure#0}.pointer_dereference.18
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: src/lib.rs:12:60 in function is_even::<u32>::{closure#2}::{closure#0}
+
+Check 36: verification::verify_is_even_u32.precondition_instance.1
+	 - Status: SUCCESS
+	 - Description: "free argument must be NULL or valid pointer"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 37: verification::verify_is_even_u32.precondition_instance.2
+	 - Status: SUCCESS
+	 - Description: "free argument must be dynamic object"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 38: verification::verify_is_even_u32.precondition_instance.3
+	 - Status: SUCCESS
+	 - Description: "free argument has offset zero"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 39: verification::verify_is_even_u32.precondition_instance.4
+	 - Status: SUCCESS
+	 - Description: "double free"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 40: verification::verify_is_even_u32.precondition_instance.5
+	 - Status: SUCCESS
+	 - Description: "free called for new[] object"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 41: verification::verify_is_even_u32.precondition_instance.6
+	 - Status: SUCCESS
+	 - Description: "free called for stack-allocated object"
+	 - Location: src/lib.rs:25:5 in function verification::verify_is_even_u32
+
+Check 42: kani::internal::in_contract_clause.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 43: kani::internal::in_contract_clause.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 44: kani::internal::in_contract_clause.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 45: kani::internal::in_contract_clause.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 46: kani::internal::in_contract_clause.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 47: kani::internal::in_contract_clause.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:769:26 in function kani::internal::in_contract_clause
+
+Check 48: kani::internal::reset_contract_clause_depth.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 49: kani::internal::reset_contract_clause_depth.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 50: kani::internal::reset_contract_clause_depth.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 51: kani::internal::reset_contract_clause_depth.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 52: kani::internal::reset_contract_clause_depth.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 53: kani::internal::reset_contract_clause_depth.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:684:21 in function kani::internal::reset_contract_clause_depth
+
+Check 54: <u32 as std::ops::Rem>::rem.division-by-zero.1
+	 - Status: SUCCESS
+	 - Description: "division by zero"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/arith.rs:602:45 in function <u32 as std::ops::Rem>::rem
+
+Check 55: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 56: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 57: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 58: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 59: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 60: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:54 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 61: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.7
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 62: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.8
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 63: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.9
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 64: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.10
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 65: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.11
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 66: std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq.pointer_dereference.12
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../home/runner/.rustup/toolchains/nightly-2026-08-21-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:2153:63 in function std::cmp::impls::<impl std::cmp::PartialEq for u32>::eq
+
+Check 67: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 68: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 69: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 70: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 71: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 72: __CPROVER_contracts_make_invalid_pointer.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:1186 in function __CPROVER_contracts_make_invalid_pointer
+
+Check 73: __CPROVER_contracts_obj_set_create_indexed_by_object_id.bit_count.1
+	 - Status: SUCCESS
+	 - Description: "count leading zeros is undefined for value zero"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:264 in function __CPROVER_contracts_obj_set_create_indexed_by_object_id
+
+Check 74: __CPROVER_contracts_obj_set_create_indexed_by_object_id.bit_count.2
+	 - Status: SUCCESS
+	 - Description: "count leading zeros is undefined for value zero"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:264 in function __CPROVER_contracts_obj_set_create_indexed_by_object_id
+
+Check 75: __CPROVER_contracts_obj_set_create_indexed_by_object_id.bit_count.3
+	 - Status: SUCCESS
+	 - Description: "count leading zeros is undefined for value zero"
+	 - Location: <builtin-library-__CPROVER_contracts_library>:264 in function __CPROVER_contracts_obj_set_create_indexed_by_object_id
+
+Check 76: kani::internal::enter_contract_clause.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 77: kani::internal::enter_contract_clause.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 78: kani::internal::enter_contract_clause.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 79: kani::internal::enter_contract_clause.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 80: kani::internal::enter_contract_clause.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 81: kani::internal::enter_contract_clause.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:710:45 in function kani::internal::enter_contract_clause
+
+Check 82: kani::internal::enter_contract_clause.pointer_dereference.7
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 83: kani::internal::enter_contract_clause.pointer_dereference.8
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 84: kani::internal::enter_contract_clause.pointer_dereference.9
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 85: kani::internal::enter_contract_clause.pointer_dereference.10
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 86: kani::internal::enter_contract_clause.pointer_dereference.11
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 87: kani::internal::enter_contract_clause.pointer_dereference.12
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:710:21 in function kani::internal::enter_contract_clause
+
+Check 88: kani::internal::exit_contract_clause.pointer_dereference.1
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 89: kani::internal::exit_contract_clause.pointer_dereference.2
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 90: kani::internal::exit_contract_clause.pointer_dereference.3
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 91: kani::internal::exit_contract_clause.pointer_dereference.4
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 92: kani::internal::exit_contract_clause.pointer_dereference.5
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 93: kani::internal::exit_contract_clause.pointer_dereference.6
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:723:45 in function kani::internal::exit_contract_clause
+
+Check 94: kani::internal::exit_contract_clause.pointer_dereference.7
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+Check 95: kani::internal::exit_contract_clause.pointer_dereference.8
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+Check 96: kani::internal::exit_contract_clause.pointer_dereference.9
+	 - Status: SUCCESS
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+Check 97: kani::internal::exit_contract_clause.pointer_dereference.10
+	 - Status: SUCCESS
+	 - Description: "dereference failure: dead object"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+Check 98: kani::internal::exit_contract_clause.pointer_dereference.11
+	 - Status: SUCCESS
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+Check 99: kani::internal::exit_contract_clause.pointer_dereference.12
+	 - Status: SUCCESS
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: library/kani_core/src/lib.rs:723:21 in function kani::internal::exit_contract_clause
+
+
+SUMMARY:
+ ** 0 of 99 failed
+
+VERIFICATION:- SUCCESSFUL
+Verification Time: 0.2364988s
+
+Manual Harness Summary:
+Complete - 1 successfully verified harnesses, 0 failures, 1 total.

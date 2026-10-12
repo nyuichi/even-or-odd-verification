@@ -9,13 +9,24 @@
 ///     println!("{number} is not even.")
 /// }
 /// ```
+#[cfg_attr(kani, kani::ensures(|result: &bool| *result == (number % T::from(2) == T::from(0))))]
 pub fn is_even<T> (number: T) -> bool where 
     T:
+        Copy +
         std::ops::Rem<Output = T> +
         std::cmp::PartialEq<T> +
         From<u8>
 {
     number % T::from(2) == T::from(0)
+}
+
+#[cfg(kani)]
+mod verification {
+    #[kani::proof_for_contract(crate::is_even)]
+    fn verify_is_even_u32() {
+        let number: u32 = kani::any();
+        crate::is_even(number);
+    }
 }
 
 /// Returns a bool that indicates whether or not number is odd. 

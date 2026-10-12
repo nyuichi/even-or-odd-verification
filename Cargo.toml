@@ -5,3 +5,6 @@ edition = "2021"
 authors = ["Christian Alexander Marrero"]
 description = "A simple crate for determining whether a number is even or odd."
 license = "MIT"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(kani)'] }

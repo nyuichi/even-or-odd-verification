@@ -1,0 +1,10 @@
+[report]
+title = "Correctness of is_even for all u32 inputs"
+explanation = "For every u32 input, is_even returns true exactly when the input is divisible by two. The verification fork retains the function body from even-or-odd 0.1.0 and adds a Copy bound to reuse the input in the postcondition; u32 already satisfies this bound. The contract harness covers all u32 values without input assumptions."
+trusted_assumptions = "The result relies on Kani and CBMC correctly modeling and checking Rust u32 operations. No user-defined stubs or assumed helper contracts are used."
+limitations = "Only is_even instantiated with u32 is covered. Other instantiations of this generic API, custom trait implementations, and is_odd are not verified. Equivalence of the entire verification fork to the crates.io release is not formally proved."
+environment = "Kani 0.68.0, x86_64-unknown-linux-gnu; cargo kani -Z function-contracts."
+
+[tool]
+name = "kani"
+version = "0.68.0"

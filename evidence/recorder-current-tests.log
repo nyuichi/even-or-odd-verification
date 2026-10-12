@@ -1,0 +1,27 @@
+   Compiling cargo-proofs v0.3.4 (/workspace/scratch/afbb2d473b35/proofs-rs-public/cli)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.70s
+     Running unittests src/main.rs (cargo-proofs-0.3.4/target/debug/deps/cargo_proofs-e16e393adb221363)
+
+running 13 tests
+test record::tests::cargo_flags_accumulate_features_and_reject_ambiguous_selection ... ok
+test record::tests::accepts_crate_relative_harness_without_suffix_guessing ... ok
+test record::tests::native_why3find_tactic_requires_all_children_proved ... ok
+test record::tests::maps_only_observed_harnesses ... ok
+test record::tests::dependency_snapshot_follows_ids_including_renames_and_multiple_versions ... ok
+test record::tests::preserves_qualified_trait_api_paths ... ok
+test record::tests::path_dependency_sources_are_relative_and_stable ... ok
+test record::tests::unreachable_is_not_labeled_pass ... ok
+test record::tests::rejects_missing_unknown_and_failed_results ... ok
+test record::tests::creusot_requires_fresh_proof_files ... ok
+test record::tests::creusot_impl_sessions_require_matching_source_span ... ok
+test record::tests::dependency_paths_resolve_symlink_aliases_and_reject_external_packages ... ok
+test record::tests::cargo_workspace_snapshot_scopes_features_renames_and_target ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 29 filtered out; finished in 0.15s
+
+     Running tests/cli.rs (cargo-proofs-0.3.4/target/debug/deps/cli-44c1e5886be234b9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+

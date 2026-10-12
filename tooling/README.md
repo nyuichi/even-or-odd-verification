@@ -1,18 +1,18 @@
-# cargo-proofs 0.3.4 harness-name fix
+# CLI used for this report
 
-Kani 0.68.0 emits `verification::verify_is_even_u32`, while cargo-proofs 0.3.4 records the expected name as `even_or_odd::verification::verify_is_even_u32`. Its fallback strips a crate prefix from the observed name instead of the expected name, leaving no matched contracts even when all 99 checks pass.
+The crates.io release cargo-proofs 0.3.4 records schema v1, while the current service requires schema v2 including the dependency snapshot. This report therefore uses the public source revision `6f4be8ea9107fc8494521c953e23624ef6da0f12` of https://github.com/proofs-rs/proofs-rs, plus the included `cargo-proofs-harness-name.patch`.
 
-The patch corrects that comparison and adds a regression test covering crate-relative names, unrelated nested names, and ambiguous matches. It changes no verification result, contract, or safety check.
+The patch corrects harness-name matching: Kani emits `verification::verify_is_even_u32`, while the recorder expects `even_or_odd::verification::verify_is_even_u32`. The fallback must remove the crate prefix from the expected name. Regression tests also reject unrelated nested names and ambiguous matches. No result, contract, or safety check is fabricated or weakened.
 
-Apply it to the published cargo-proofs 0.3.4 source archive:
+From the parent directory containing this verification repository:
 
 ```sh
-cd ..
-curl -fL https://static.crates.io/crates/cargo-proofs/cargo-proofs-0.3.4.crate -o cargo-proofs-0.3.4.crate
-tar xzf cargo-proofs-0.3.4.crate
-patch -d cargo-proofs-0.3.4 -p1 < even-or-odd-verification/tooling/cargo-proofs-0.3.4-harness-name.patch
-cargo test --manifest-path cargo-proofs-0.3.4/Cargo.toml --locked --features reqwest/rustls-tls-native-roots record::tests
-cargo install --path cargo-proofs-0.3.4 --locked --debug --features reqwest/rustls-tls-native-roots --force
+git clone --depth 1 https://github.com/proofs-rs/proofs-rs.git proofs-rs-public
+git -C proofs-rs-public fetch origin 6f4be8ea9107fc8494521c953e23624ef6da0f12
+git -C proofs-rs-public checkout 6f4be8ea9107fc8494521c953e23624ef6da0f12
+patch -d proofs-rs-public -p1 < even-or-odd-verification/tooling/cargo-proofs-harness-name.patch
+cargo test --manifest-path proofs-rs-public/cli/Cargo.toml --locked --features reqwest/rustls-tls-native-roots record::tests
+cargo install --path proofs-rs-public/cli --locked --debug --features reqwest/rustls-tls-native-roots --force
 ```
 
-Run the installation outside the verification repository to keep its worktree clean. The native-root feature trusts the execution environment's installed CA certificates; TLS verification remains enabled. `--debug` reuses the test build and does not affect the verifier.
+The native-root feature trusts the execution environment's installed CA certificates; TLS verification remains enabled. `--debug` reuses the test build and does not affect Kani. The original release patch is retained only as a record of the initial diagnosis; it alone cannot migrate the recorder to schema v2.
